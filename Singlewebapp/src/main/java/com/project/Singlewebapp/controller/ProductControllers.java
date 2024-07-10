@@ -18,4 +18,8 @@ public class ProductControllers {
     public List<Prodduct> getProdustcdetails(){
         return produstservice.getAllproducts();
     }
+    @RequestMapping("/Product2")
+    public String hello(){
+        return "hello";
+    }
 }
