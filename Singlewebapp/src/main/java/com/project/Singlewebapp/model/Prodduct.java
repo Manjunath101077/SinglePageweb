@@ -1,14 +1,28 @@
 package com.project.Singlewebapp.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.Data;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
 
+@Entity
 @Data
+
+@Component
 public class Prodduct {
+    @Id
     private int prodId;
     private String prodName;
     private int price;
 
-    public Prodduct(int i, String pan, int i1) {
+    public Prodduct() {
+    }
+
+    public Prodduct(int prodId, String prodName, int price) {
+        this.prodId = prodId;
+        this.prodName = prodName;
+        this.price = price;
     }
 
     public int getProdId() {
@@ -33,5 +47,14 @@ public class Prodduct {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Prodduct{" +
+                "prodId=" + prodId +
+                ", prodName='" + prodName + '\'' +
+                ", price=" + price +
+                '}';
     }
 }

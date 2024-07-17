@@ -3,8 +3,7 @@ package com.project.Singlewebapp.controller;
 import com.project.Singlewebapp.model.Prodduct;
 import com.project.Singlewebapp.services.productServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -14,12 +13,30 @@ public class ProductControllers {
     @Autowired
     productServices produstservice;
 
-    @RequestMapping("/Product")
+    @GetMapping("/Product")
     public List<Prodduct> getProdustcdetails(){
-        return produstservice.getAllproducts();
+        return produstservice.getProducts();
     }
-    @RequestMapping("/Product2")
+    @GetMapping("/Product2")
     public String hello(){
         return "hello";
+    }
+    @GetMapping("/Product/{prodid}")
+    public Prodduct getProductByID(@PathVariable int prodid){
+        return produstservice.getProductByid(prodid);
+    }
+
+    @PostMapping("/Product")
+    public void addProduct(@RequestBody Prodduct prod){
+        produstservice.addProducts(prod);
+
+    }
+@PutMapping("/Products")
+    public void updateProducts(@RequestBody Prodduct prod){
+        produstservice.updateProduct(prod);
+    }
+    @DeleteMapping("/Products/{productid}")
+    public void deleteProducts(@PathVariable int productid){
+        produstservice.deleteProduct(productid);
     }
 }
